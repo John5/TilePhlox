@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Leaflet JS example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+<!--[if lte IE 8]><link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" /><![endif]-->
+<style type="text/css">
+
+body {
+	margin:0;
+	padding:0;
+	font-family: 'Arial', sans-serif;
+	font-size:14px;
+	line-height: 18px;
+}
+
+#map {
+	position:absolute;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	width: 100%;
+	min-height:600px;
+}
+
+#mapLegend {
+	position:absolute;
+	right:20px;
+	bottom:34px;
+	background-color:#fff;
+	padding:14px;
+	border:solid 1px #ccc;
+	border-radius:3px;
+	box-shadow: 0 1px 3px #aaa;
+	color: #272727;
+}
+
+</style>
+</head>
+<body>
+
+<div id="map"></div>
+<div id="mapLegend"></div>
+<script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+<script type="text/javascript">
+
+var map;
+//enter your own URLs here
+var metaDataUrl = 'http://t1.example.com/metadata/myfile.json';
+var tileUrl = 'http://{s}.example.com/mbtiles/myfile/{z}/{x}/{y}.png';
+
+//retrieve metadata first because we need it to set up the map
+//from https://gist.github.com/azproduction/1625623
+var ajax = function(m,u,c,d){with(new XMLHttpRequest)onreadystatechange=function(){readyState^4||c(this)},open(m,u),send(d)};
+ajax('get', metaDataUrl, function(xhr) {
+
+	var meta = JSON.parse(xhr.responseText);
+
+	var baseTiles = new L.tileLayer(tileUrl, {
+		tms: true, //IMPORTANT if no, or the wrong tiles appear you forgot to set this property!
+		minZoom: meta.minzoom,
+		maxZoom: meta.maxzoom,
+		attribution: meta.attribution,
+		subdomains: ['t1', 't2', 't3', 't4'], //set your subdomains here
+	});
+
+	//the coordinates are stored as a string in TileMill in reverse order
+	map = new L.Map('map', {
+		layers: [baseTiles],
+		center: meta.center.split(',').slice(0, 2).reverse(),
+		zoom: meta.center.split(',').slice(2, 3),
+		maxBounds: [meta.bounds.split(',').slice(0, 2).reverse(), meta.bounds.split(',').slice(2, 4).reverse()]
+	});
+	
+	//show legend on map if there is one.
+	if(meta.legend) {
+		document.getElementById('mapLegend').innerHTML = meta.legend;
+	}
+});
+
+</script>
+</body>
+</html>
