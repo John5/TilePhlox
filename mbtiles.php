@@ -13,14 +13,14 @@ $y = intval($_GET['y']);
 try {
 	$file = 'mbtiles/'.$db.'.mbtiles';
 	if(file_exists($file)) {
-		//nothing, maybe later check file modification date for caching?
+		//@todo: get file modification date for caching headers
 	} else {
 		throw new Exception($db.' cannot be found');
 	}
-	// Open the database
+
 	$db = new PDO('sqlite:'.$file);
+	// no need to escape the parameters as they have been casted to integers.
 	$q = $db->prepare('SELECT tile_data FROM tiles WHERE zoom_level='.$z.' AND tile_column='.$x.' AND tile_row='.$y);
-	//echo 'SELECT tile_data FROM tiles WHERE zoom_level='.$z.' AND tile_column='.$y.' AND tile_row='.$x;
 	$q->execute();
 	$q->bindColumn(1, $tile_data, PDO::PARAM_LOB);
 	while($q->fetch()) {
