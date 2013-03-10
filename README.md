@@ -5,7 +5,7 @@ MBTiles server in PHP with meta data support
 
 About
 -----
-This is a PHP implementation of the [MBTiles specificationn](https://github.com/mapbox/mbtiles-spec). It is slightly more advanced than [PHP-MBTiles-Server](https://github.com/bmcbride/PHP-MBTiles-Server) because it implements basic caching, improved error handling and adds support for meta data in the MBTiles database.
+This is a PHP implementation of the [MBTiles specification](https://github.com/mapbox/mbtiles-spec). It is slightly more advanced than [PHP-MBTiles-Server](https://github.com/bmcbride/PHP-MBTiles-Server) because it implements basic caching, improved error handling and adds support for meta data in the MBTiles database.
 
 With this software you can set up a tile server using the MBTiles-file exported from [TileMill](https://github.com/mapbox/tilemill) on a server running Apache with PHP.
 
@@ -49,7 +49,7 @@ For viewing the maps yo can use a javascript library like OpenLayers or [Leaflet
 
 Name
 ----
-TilePhlox is named after [Doctor Phlox](http://en.memory-alpha.org/wiki/Phlox). One of the more entertaining characters from the television series Star Trek: Enterprise. Despite Doctor Phlox the show could unfortunately not live up to its expectations. This is a reminder that even though this software might work very well for you at it still it can never be truly great because it depends on PHP and Apache which are not the best foundation for serving map tiles.
+TilePhlox is named after [Doctor Phlox](http://en.memory-alpha.org/wiki/Phlox). One of the more entertaining characters from the television series Star Trek: Enterprise. Despite Doctor Phlox the show could unfortunately not live up to its expectations. This is a reminder that even though this software might work very well for you maximum performance cannot be achieved because it depends on PHP and Apache which are not the best foundation for serving map tiles.
 
 License 
 -------
