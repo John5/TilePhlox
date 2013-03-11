@@ -1,6 +1,6 @@
 TilePhlox
 =========
-MBTiles server in PHP with meta data support
+MBTiles server in PHP with metadata support
 --------------------------------------------
 
 About
@@ -39,7 +39,7 @@ Serving map tiles to many concurrent users may overload Apache. If you need more
 
 After installation place your .mbtiles files in the mbtiles directory. Tip: if you don't want to keep them somewhere else you can also create a symbolic link. While at it you should set the file permissions so that PHP cannot write to the MBTiles-file.
 
-The tiles and meta data will be available under the following URLs:
+The tiles and metadata will be available under the following URLs:
 ```
 http://tiles.example.com/mbtiles/[name of your database]/[z]/[x]/[y].png
 http://tiles.example.com/metadata/[name of your database].json
